@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>Lista de Candidatos</title>
+	<h:outputStylesheet library="css" name="bootstrap.min.css"/>
+	<h:outputScript library="js" name="jquery-3.3.1.min.js"/>
+	<h:outputScript library="js" name="bootstrap.min.js"/>
+</h:head>
+<h:body>
+<div class='container'>
+	<h1>Lista de Candidatos</h1>
+	<h:dataTable styleClass="table" value="#{candidatoBean.candidatos}" var="cand">
+		<h:column>
+			<f:facet name="header">Código</f:facet>
+			#{cand.codigo}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Nome</f:facet>
+			#{cand.nome}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Apelido</f:facet>
+			#{cand.apelido}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Ficha Limpa</f:facet>
+			<h:selectBooleanCheckbox value="#{cand.fichaLimpa}" disabled="true"/>
+		</h:column>
+		<h:column>
+			<f:facet name="header">Número</f:facet>
+			#{cand.numero}
+		</h:column>
+		<h:column>
+			<h:form>
+				<h:commandButton styleClass="mr-2 btn btn-outline-primary btn-sm" action="candidato" value="Editar" >
+					<f:setPropertyActionListener value="#{cand}" target="#{candidatoBean.candidato}" />
+				</h:commandButton>
+				<h:commandButton styleClass="btn btn-outline-danger btn-sm" action="#{candidatoBean.deletar(cand.codigo)}" value="Deletar" />
+			</h:form>
+		</h:column>
+	</h:dataTable>	
+</div>
+		
+</h:body>
+</html>
