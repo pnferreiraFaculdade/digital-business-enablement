@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+<title>Notícia</title>
+<h:outputStylesheet library="css" name="bootstrap.min.css" />
+<h:outputScript library="js" name="jquery-3.3.1.min.js" />
+<h:outputScript library="js" name="bootstrap.min.js" />
+</h:head>
+<body>
+	<div class="container">
+		<h1>Notícia</h1>
+		<h:form>
+			<h:inputHidden value="#{noticiaBean.noticia.codigo}" />
+			<div class="form-group">
+				<h:outputLabel value="Titulo" for="titulo" />
+				<h:inputText value="#{noticiaBean.noticia.titulo}" id="titulo"
+					styleClass="form-control" />
+			</div>
+			<div class="form-group">
+				<h:outputLabel value="Conteudo" for="conteudo" />
+				<h:inputText value="#{noticiaBean.noticia.conteudo}" id="conteudo"
+					styleClass="form-control" />
+			</div>
+			<div class="form-group" >
+				<h:outputLabel value="Publicado" for="publicado" />
+				<h:selectBooleanCheckbox value="#{noticiaBean.noticia.publicado}"
+					id="publicado" styleClass="form-check"/>
+			</div>
+			<div class="form-group">
+				<h:outputLabel value="Data" for="data" />
+				<h:inputText value="#{noticiaBean.noticia.data.time}" id="data" styleClass="form-control">
+					<f:convertDateTime pattern="dd/MM/yyyy"  />
+				</h:inputText>
+			</div>
+			<h:commandButton action="#{noticiaBean.cadastrar()}" value="Salvar" styleClass="btn-sm btn-success"/>
+		</h:form>
+		<h:messages 
+			errorClass="alert alert-danger"
+			infoClass="alert alert-success"
+		/>
+	</div>
+</body>
+
+
+</html>

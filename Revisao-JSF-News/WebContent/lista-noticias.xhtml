@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>Lista de Noticias</title>
+	<h:outputStylesheet library="css" name="bootstrap.min.css"/>
+	<h:outputScript library="js" name="jquery-3.3.1.min.js"/>
+	<h:outputScript library="js" name="bootstrap.min.js"/>
+</h:head>
+<h:body>
+	<div class="container">
+		<h1>Lista de Noticias</h1>
+		<h:dataTable styleClass="table" value="#{noticiaBean.noticias}" var="noticia">
+			<h:column>
+				<f:facet name="header">Código</f:facet>
+				#{noticia.codigo}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Título</f:facet>
+				#{noticia.titulo}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Conteudo</f:facet>
+				#{noticia.conteudo}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Publicado</f:facet>
+				<h:selectBooleanCheckbox value="#{noticia.publicado}" disabled="true"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Data</f:facet>
+				<h:outputText value="#{noticia.data.time}" >
+					<f:convertDateTime pattern="dd/MM/yyyy"/>
+				</h:outputText>				
+			</h:column>
+			<h:column>
+				<h:form>
+					<h:commandButton action="noticia" value="Editar" styleClass="btn-sm btn-primary">
+					<f:setPropertyActionListener value="#{noticia}" target="#{noticiaBean.noticia}" />
+				</h:commandButton>
+				<h:commandButton  action="#{noticiaBean.deletar(noticia.codigo)}" value="Deletar" styleClass="btn-sm btn-danger"/>
+			
+				</h:form>
+			</h:column>
+
+		</h:dataTable>
+	</div>
+</h:body>
+</html>
